@@ -4,3 +4,23 @@ main.ant-layout-content,
 main.ant-layout-content>div {
   height: 100%
 }
+
+footer.ant-layout-footer {
+  padding: 10px 35px !important;
+}
+
+header.ant-layout-header {
+  height: 50px;
+}
+
+div.logo img {
+  width: 55px;
+  height: 55px;
+  margin-bottom: 13px
+}
+
+div.logo span {
+  color: white;
+  display: inline-block;
+  font-size: 15px;
+}

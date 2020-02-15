@@ -1,13 +1,24 @@
 import React, { useState } from "react";
 import "./index.css";
-import { Layout, Col, Row, Upload, Button, Icon, message } from "antd";
+import {
+  Layout,
+  Col,
+  Row,
+  Upload,
+  Button,
+  Icon,
+  message,
+  Typography
+} from "antd";
 
 import ModalCom from "../components/Modal";
-
+import InfoComponent from "../components/Info";
 import { RcFile, UploadChangeParam } from "antd/es/Upload";
 import { UploadFile } from "antd/lib/upload/interface";
+import logo from "../static/logo.png";
 
 const { Header, Content, Footer } = Layout;
+const { Text } = Typography;
 
 // TODO: refractor upload logic
 // const header = { headers: { "Content-Type": "multipart/form-data" } };
@@ -52,7 +63,13 @@ const Index = () => {
   return (
     <Layout className="layout">
       <Header>
-        <div className="logo" />
+        <div className="logo">
+          <img src={logo} alt="" />
+          <Text>
+            Version 0.1.0 目前支持：
+            单文件上传（为图片时自动生成md链接）以及压缩包上传
+          </Text>
+        </div>
       </Header>
       <Content style={{ padding: "0 50px" }}>
         <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
@@ -74,7 +91,7 @@ const Index = () => {
               </Upload>
             </Col>
             <Col offset={2} span={12}>
-              展示Bucket信息~
+              <InfoComponent />
             </Col>
           </Row>
         </div>

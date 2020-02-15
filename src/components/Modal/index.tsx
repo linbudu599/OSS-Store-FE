@@ -9,7 +9,8 @@ interface IModalProps {
   title: string;
   link: string;
   mdTag: string;
-  hide: any;
+  hide: () => void;
+  isImg: boolean;
 }
 
 const ModalCom: React.FC<IModalProps> = ({
@@ -17,9 +18,10 @@ const ModalCom: React.FC<IModalProps> = ({
   title,
   hide,
   link,
-  mdTag
+  mdTag,
+  isImg
 }) => {
-  console.log(link, mdTag);
+  console.log(isImg);
 
   const handleCopy = (selector: string): void => {
     const copyDOM = document.querySelector(selector)!; //需要复制文字的节点
@@ -66,27 +68,32 @@ const ModalCom: React.FC<IModalProps> = ({
               复制链接
             </Button>
           </Col>
-          <Col span={16}>
-            <Text ellipsis style={{ width: "100%" }}>
-              <Input
-                type="text"
-                id="mdtag"
-                value={mdTag}
-                style={{ width: "90%" }}
-              />
-            </Text>
-          </Col>
-          <Col span={4} style={{ marginRight: "20px" }}>
-            <Button
-              size="small"
-              icon="copy"
-              onClick={() => {
-                handleCopy("#mdtag");
-              }}
-            >
-              复制MarkDown链接
-            </Button>
-          </Col>
+          {isImg ? (
+            <>
+              <Col span={16}>
+                <Text ellipsis style={{ width: "100%" }}>
+                  <Input
+                    type="text"
+                    id="mdtag"
+                    value={mdTag}
+                    style={{ width: "90%" }}
+                  />
+                </Text>
+              </Col>
+
+              <Col span={4} style={{ marginRight: "20px" }}>
+                <Button
+                  size="small"
+                  icon="copy"
+                  onClick={() => {
+                    handleCopy("#mdtag");
+                  }}
+                >
+                  复制MarkDown链接
+                </Button>
+              </Col>
+            </>
+          ) : null}
         </Row>
       </Modal>
     </>

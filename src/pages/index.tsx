@@ -16,6 +16,7 @@ const Index = () => {
   const [customFileList, setCustomFileList] = useState<RcFile[]>([]);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [link, setLink] = useState<string>("");
+  const [isImg, setIsImg] = useState<boolean>(false);
 
   const beforeUpload = (file: RcFile, fileList: RcFile[]): boolean => {
     if (file.size > 100 * 1024 * 1024) {
@@ -34,6 +35,11 @@ const Index = () => {
     setCustomFileList([...fileList] as RcFile[]);
     if (file.status === "done" && file.response.url) {
       message.success("上传成功啦");
+      if (file.type.startsWith("image")) {
+        setIsImg(true);
+      } else {
+        setIsImg(false);
+      }
       setShowModal(true);
       setLink(file.response.url);
     }
@@ -77,6 +83,7 @@ const Index = () => {
         visible={showModal}
         title="请带哥复制链接"
         link={link}
+        isImg={isImg}
         mdTag={transform2Md(link)}
         hide={() => {
           setShowModal(false);

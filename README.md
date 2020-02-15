@@ -11,3 +11,5 @@
 ## 预览
 
 ![preview](./preview/TIM截图20200214144248.png)
+
+![img](http://oss.linbudu.top/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(14).png)

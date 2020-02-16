@@ -8,7 +8,9 @@ const InfoComponent: React.FC = () => {
   return (
     <>
       <Row>
-        <Text>当前Bucket：linbudu-oss-store</Text>
+        <Text>
+          当前Bucket：<Text strong>linbudu-oss-store</Text>
+        </Text>
         {/* TODO: No <br /> plz，use Gutter */}
         <br />
         <br />

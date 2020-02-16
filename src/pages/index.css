@@ -19,3 +19,10 @@
 .upload-list-inline .ant-upload-animate-leave {
   animation-name: uploadAnimateInlineOut;
 }
+
+input.ant-input {
+  margin-bottom: 20px;
+  width: 70%;
+  display: block;
+  margin-top: 20px;
+}

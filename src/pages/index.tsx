@@ -7,18 +7,19 @@ import {
   Upload,
   Button,
   Icon,
+  Input,
   message,
   Typography
 } from "antd";
 
 import ModalCom from "../components/Modal";
-import InfoComponent from "../components/Info";
+import InfoComponent from "./Info";
+import HeaderCom from "../components/Header";
 import { RcFile, UploadChangeParam } from "antd/es/Upload";
 import { UploadFile } from "antd/lib/upload/interface";
-import logo from "../static/logo.png";
 
-const { Header, Content, Footer } = Layout;
 const { Text } = Typography;
+const { Content, Footer } = Layout;
 
 // TODO: refractor upload logic
 // const header = { headers: { "Content-Type": "multipart/form-data" } };
@@ -28,21 +29,27 @@ const Index = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [link, setLink] = useState<string>("");
   const [isImg, setIsImg] = useState<boolean>(false);
+  const [customeName, setCustomeName] = useState<string>("");
 
-  const beforeUpload = (file: RcFile, fileList: RcFile[]): boolean => {
+  interface ICustomProps {
+    customeName: string;
+  }
+
+  const beforeUpload = (file: RcFile & ICustomProps): boolean => {
     if (file.size > 100 * 1024 * 1024) {
       message.error("啊哦，文件太大了");
       return false;
     }
+    file.customeName = customeName;
+    console.log(file);
     return true;
   };
 
   const onChange = async ({
     file,
-    fileList,
-    event
+    fileList
   }: UploadChangeParam<UploadFile<any>>) => {
-    console.log(file, fileList, event);
+    console.log(file, fileList);
     setCustomFileList([...fileList] as RcFile[]);
     if (file.status === "done" && file.response.url) {
       message.success("上传成功啦");
@@ -60,21 +67,36 @@ const Index = () => {
     return `![img](${origin})`;
   };
 
+  const transformFile = (file: RcFile): File => {
+    console.log(file);
+    // @ts-ignore
+    file.customeName = "sss";
+    return file;
+  };
   return (
     <Layout className="layout">
-      <Header>
-        <div className="logo">
-          <img src={logo} alt="" />
-          <Text>
-            Version 0.1.0 目前支持：
-            单文件上传（为图片时自动生成md链接）以及压缩包上传
-          </Text>
-        </div>
-      </Header>
+      <HeaderCom />
+
       <Content style={{ padding: "0 50px" }}>
         <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
           <Row>
             <Col span={10}>
+              <Text>你可以为文件自定义命名，如oss.linbudu.top/budu.png。</Text>
+              <br />
+              <br />
+              <Text>后缀名将保持原来的值。</Text>
+              <br />
+              <br />
+              <Text>由于MarkDown语法原因，英文括号()会被转化，如:</Text>
+              <br />
+              <Text strong>foo(1).png -> foo-1.png</Text>
+              <Input
+                placeholder="后台实现研究中"
+                disabled
+                onChange={e => {
+                  setCustomeName(e.target.value);
+                }}
+              />
               {/* TODO: 多文件 文件夹 滚动列表 */}
               <Upload
                 listType="picture"
@@ -82,7 +104,14 @@ const Index = () => {
                 accept="*"
                 method="POST"
                 fileList={customFileList}
-                beforeUpload={beforeUpload}
+                data={{ customeName }}
+                beforeUpload={
+                  (beforeUpload as unknown) as (
+                    file: RcFile,
+                    FileList: RcFile[]
+                  ) => boolean
+                }
+                transformFile={transformFile}
                 onChange={onChange}
               >
                 <Button>

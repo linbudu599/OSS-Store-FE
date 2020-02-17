@@ -1,6 +1,7 @@
 # OSS-Store-FrontEnd
 
 > 自建图床（云盘？）后端，基于Koa2.
+> 0.1.1，支持上传单文件/压缩包，当上传图片时会返回markdown链接，当上传为音视频时，返回的网址可以在线收听/观看。
 
 ## 功能
 
@@ -12,4 +13,4 @@
 
 ![preview](./preview/TIM截图20200214144248.png)
 
-![img](http://oss.linbudu.top/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(14).png)
+![img](preview/React&#32;App.png)

@@ -93,6 +93,7 @@ const Index = () => {
               <Input
                 placeholder="后台实现研究中"
                 disabled
+                className={"set_name"}
                 onChange={e => {
                   setCustomeName(e.target.value);
                 }}

@@ -101,7 +101,8 @@ const Index = () => {
               {/* TODO: 多文件 文件夹 滚动列表 */}
               <Upload
                 listType="picture"
-                action="http://localhost:3099/upload"
+                // action="http://api.linbudu.top/upload"
+                action="http://47.97.183.158:3666/upload"
                 accept="*"
                 method="POST"
                 fileList={customFileList}

@@ -1,6 +1,5 @@
 import React from "react";
 import { Layout, Typography } from "antd";
-import logo from "../../static/logo.png";
 
 const { Header } = Layout;
 const { Text } = Typography;

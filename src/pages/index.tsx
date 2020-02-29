@@ -18,6 +18,7 @@ import HeaderCom from "../components/Header";
 import { RcFile, UploadChangeParam } from "antd/es/Upload";
 import { UploadFile } from "antd/lib/upload/interface";
 
+const { Dragger } = Upload;
 const { Text } = Typography;
 const { Content, Footer } = Layout;
 
@@ -41,7 +42,6 @@ const Index = () => {
       return false;
     }
     file.customeName = customeName;
-    console.log(file);
     return true;
   };
 
@@ -68,9 +68,9 @@ const Index = () => {
   };
 
   const transformFile = (file: RcFile): File => {
-    console.log(file);
-    // @ts-ignore
-    file.customeName = "sss";
+    // FIXME: cannot work properly with server
+    // console.log(file);
+    // file.customeName = "sss";
     return file;
   };
   return (
@@ -81,7 +81,9 @@ const Index = () => {
         <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
           <Row>
             <Col span={10}>
-              <Text>你可以为文件自定义命名，如oss.linbudu.top/budu.png。</Text>
+              <Text>
+                你可以为文件自定义命名，如oss.linbudu.top/快乐风男.png。
+              </Text>
               <br />
               <br />
               <Text>后缀名将保持原来的值。</Text>
@@ -99,9 +101,8 @@ const Index = () => {
                 }}
               />
               {/* TODO: 多文件 文件夹 滚动列表 */}
-              <Upload
+              <Dragger
                 listType="picture"
-                // action="http://api.linbudu.top/upload"
                 action="http://47.97.183.158:3666/upload"
                 accept="*"
                 method="POST"
@@ -116,10 +117,11 @@ const Index = () => {
                 transformFile={transformFile}
                 onChange={onChange}
               >
-                <Button>
-                  <Icon type="upload" /> Upload
-                </Button>
-              </Upload>
+                <p className="ant-upload-drag-icon">
+                  <Icon type="inbox" />
+                </p>
+                <p className="ant-upload-text">拖拽或点击来上传文件</p>
+              </Dragger>
             </Col>
             <Col offset={2} span={12}>
               <InfoComponent />

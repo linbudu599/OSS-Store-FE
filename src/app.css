@@ -9,9 +9,9 @@ footer.ant-layout-footer {
   padding: 10px 35px !important;
 }
 
-header.ant-layout-header {
+/* header.ant-layout-header {
   height: 50px;
-}
+} */
 
 div.logo img {
   width: 55px;
@@ -22,5 +22,5 @@ div.logo img {
 div.logo span {
   color: white;
   display: inline-block;
-  font-size: 15px;
+  font-size: 18px;
 }

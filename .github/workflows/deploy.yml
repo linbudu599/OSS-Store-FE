@@ -1,4 +1,4 @@
-name: deploy blog to aliyun
+name: Deploy OSS-FE To AliCloud
 on:
   push:
     branches:
@@ -24,9 +24,7 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SECRET_KEY }}
           ARGS: "-avz --delete"
-          # 要部署的文件
           SOURCE: "./build"
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          # 部署目标
           TARGET: /usr/local/demo-collections/oss/

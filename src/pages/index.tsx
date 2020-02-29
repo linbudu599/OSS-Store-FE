@@ -5,7 +5,6 @@ import {
   Col,
   Row,
   Upload,
-  Button,
   Icon,
   Input,
   message,
@@ -15,7 +14,10 @@ import {
 import ModalCom from "../components/Modal";
 import InfoComponent from "./Info";
 import HeaderCom from "../components/Header";
-import { RcFile, UploadChangeParam } from "antd/es/Upload";
+import {
+  RcFile,
+  UploadChangeParam
+} from "../../node_modules/antd/es/upload/interface";
 import { UploadFile } from "antd/lib/upload/interface";
 
 const { Dragger } = Upload;
